@@ -46,10 +46,20 @@ export default {
         isValid: false,
         country: undefined,
       },
-      displayFormat : 'International',
-      outputFormat : 'International'
+      displayFormat : 'INTERNATIONAL',
+      outputFormat : 'E.164'
     };
   },
+
+  mounted () {
+    // testing delayed setting!
+    let interval = undefined;
+    interval = setInterval( () => {
+      clearInterval(interval);
+      this.myPhoneNumber = '+49123123123';
+    }, 1000);
+  },
+
   methods: {
     onInput({ number, isValid, country }) {
       this.phone.number = number;
