@@ -58,10 +58,21 @@ webpackJsonp([1],[
         isValid: false,
         country: undefined
       },
-      displayFormat: 'International',
-      outputFormat: 'International'
+      displayFormat: 'INTERNATIONAL',
+      outputFormat: 'E.164'
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    // testing delayed setting!
+    var interval = undefined;
+    interval = setInterval(function () {
+      clearInterval(interval);
+      _this.myPhoneNumber = '+49123123123';
+    }, 1000);
+  },
+
 
   methods: {
     onInput: function onInput(_ref) {
@@ -2184,7 +2195,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */](Object.assign({}, __WEB
           } }, displayFormat: { type: String, default: "International" }, outputFormat: { type: String, default: "International" } }, mounted: function mounted() {
         this.initializeCountry(), this.$emit("onValidate", this.response);
       }, created: function created() {
-        this.value && (this.phone = this.value);
+        this.value && (console.warn("created::set phone => ", this.value), this.phone = this.value);
       }, data: function data() {
         return { phone: "", activeCountry: { iso2: "" }, open: !1, selectedIndex: null, typeToFindInput: "", typeToFindTimer: null };
       }, computed: { mode: function mode() {
@@ -2207,8 +2218,8 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */](Object.assign({}, __WEB
           return { number: this.state ? this.formattedResult : this.phone, isValid: this.state, country: this.activeCountry };
         } }, watch: { state: function state(t) {
           t && "prefix" !== this.mode && (this.phone = this.displayValue), this.$emit("onValidate", this.response);
-        }, value: function value() {
-          this.phone = this.displayValue;
+        }, value: function value(t) {
+          this.phone = t, this.phone = this.displayValue;
         } }, methods: { getFormattedResult: function getFormattedResult(t) {
           if (!this.mode || !this.filteredCountries) return "";var e = this.phone;if ("code" === this.mode) {
             var n = new i.a();n.input(this.phone), this.activeCountry = this.findCountry(n.country) || this.activeCountry;
@@ -2920,7 +2931,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */](Object.assign({}, __WEB
         a = n(125),
         o = n(65),
         s = r,
-        d = o(i.a, a.a, !1, s, "data-v-50066dc6", null);e.a = d.exports;
+        d = o(i.a, a.a, !1, s, "data-v-f6476cc8", null);e.a = d.exports;
   }, function (t, e) {}, function (t, e) {}, function (t, e) {
     t.exports = function (t, e, n, r, i, a) {
       var o,
@@ -5002,7 +5013,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */](Object.assign({}, __WEB
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_babelrc_false_presets_C_Users_Kevin_Documents_Repositories_vue_tel_input_node_modules_babel_preset_poi_index_js_jsx_vue_cacheDirectory_true_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(/*! !babel-loader?{"babelrc":false,"presets":[["C://Users//Kevin//Documents//Repositories//vue-tel-input//node_modules//babel-preset-poi//index.js",{"jsx":"vue"}]],"cacheDirectory":true}!../node_modules/vue-loader/lib/selector?type=script&index=0!./App.vue */ 2);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_201a1fe6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(/*! !../node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-201a1fe6","hasScoped":false,"buble":{"transforms":{}}}!../node_modules/vue-loader/lib/selector?type=template&index=0!./App.vue */ 13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_650d0434_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(/*! !../node_modules/vue-loader/lib/template-compiler/index?{"id":"data-v-650d0434","hasScoped":false,"buble":{"transforms":{}}}!../node_modules/vue-loader/lib/selector?type=template&index=0!./App.vue */ 13);
 var normalizeComponent = __webpack_require__(/*! ../node_modules/vue-loader/lib/component-normalizer */ 12)
 /* script */
 
@@ -5019,7 +5030,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_babelrc_false_presets_C_Users_Kevin_Documents_Repositories_vue_tel_input_node_modules_babel_preset_poi_index_js_jsx_vue_cacheDirectory_true_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_201a1fe6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_650d0434_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5033,7 +5044,7 @@ var Component = normalizeComponent(
 /* 12 */,
 /* 13 */
 /*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-201a1fe6","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./demo/App.vue ***!
+  !*** ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-650d0434","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./demo/App.vue ***!
   \***********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /*! exports used: default */
