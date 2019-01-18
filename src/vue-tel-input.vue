@@ -283,8 +283,9 @@ export default {
       }
       this.$emit('onValidate', this.response);
     },
-    value() {
-      this.phone = this.displayValue;
+    value(newVal) {
+      this.phone = newVal;
+      this.phone = this.displayValue
     },
   },
   methods: {
