@@ -189,6 +189,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    displayFormat: {
+      type: String,
+      default: 'International'
+    },
+    outputFormat: {
+      type: String,
+      default: 'International'
+    }
   },
   mounted() {
     this.initializeCountry();
@@ -243,27 +251,15 @@ export default {
 
       return [...preferredCountries, ...this.filteredCountries];
     },
-    formattedResult() {
-      // Calculate phone number based on mode
-      if (!this.mode || !this.filteredCountries) {
-        return '';
-      }
-      let phone = this.phone;
-      if (this.mode === 'code') {
-        // If user manually type the country code
-        const formatter = new AsYouType();// eslint-disable-line
-        formatter.input(this.phone);
 
-        // Find inputted country in the countries list
-        this.activeCountry = this.findCountry(formatter.country) || this.activeCountry;
-      } else if (this.mode === 'prefix') {
-        // Remove the first '0' if this is a '0' prefix number
-        // Ex: 0432421999
-        phone = this.phone.slice(1);
-      }
-
-      return formatNumber(phone, this.activeCountry && this.activeCountry.iso2, 'International');
+    displayValue () {
+      return this.getFormattedResult(this.displayFormat);
     },
+
+    formattedResult () {
+      return this.getFormattedResult(this.outputFormat);
+    },
+
     state() {
       return isValidNumber(this.formattedResult, this.activeCountry && this.activeCountry.iso2);
     },
@@ -283,15 +279,38 @@ export default {
       if (value && this.mode !== 'prefix') {
         // If mode is 'prefix', keep the number as user typed,
         // Otherwise format it
-        this.phone = this.formattedResult;
+        this.phone = this.displayValue;
       }
       this.$emit('onValidate', this.response);
     },
     value() {
-      this.phone = this.value;
+      this.phone = this.displayValue;
     },
   },
   methods: {
+
+    getFormattedResult(format) {
+      // Calculate phone number based on mode
+      if (!this.mode || !this.filteredCountries) {
+        return '';
+      }
+      let phone = this.phone;
+      if (this.mode === 'code') {
+        // If user manually type the country code
+        const formatter = new AsYouType();// eslint-disable-line
+        formatter.input(this.phone);
+
+        // Find inputted country in the countries list
+        this.activeCountry = this.findCountry(formatter.country) || this.activeCountry;
+      } else if (this.mode === 'prefix') {
+        // Remove the first '0' if this is a '0' prefix number
+        // Ex: 0432421999
+        phone = this.phone.slice(1);
+      }
+
+      return formatNumber(phone, this.activeCountry && this.activeCountry.iso2, format);
+    },
+
     initializeCountry() {
       /**
        * 1. Use default country if passed from parent
